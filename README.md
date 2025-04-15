@@ -1,10 +1,14 @@
 # Ballistic Simulator
 
 Ballistic Simulator is a C++ project designed to simulate ballistic trajectories for various ammunition types. Written in pure C++, it is highly efficient, supports multithreading, and has been proven to run efficiently on ARM platforms. The project is modular, with separate libraries for ammunition data and ballistic calculations.
-<div style="display: flex; justify-content: space-around;">
-  <img src="fig/fig1.gif" alt="Figure 1" style="width: 45%;" />
-  <img src="fig/fig2.png" alt="Figure 2" style="width: 45%;" />
-</div>
+
+[//]: # (<div style="display: flex; justify-content: space-around;">)
+
+[//]: # (  <img src="fig/fig1.gif" alt="Figure 1" style="width: 45%;" />)
+
+[//]: # (  <img src="fig/fig2.png" alt="Figure 2" style="width: 45%;" />)
+
+[//]: # (</div>)
 
 ## Features
 - **Dynamic and Static Libraries**: Supports both shared and static library builds.
