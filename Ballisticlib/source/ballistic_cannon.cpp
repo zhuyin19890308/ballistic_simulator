@@ -1,9 +1,5 @@
 
-
-
-
 #include "ballistic_cannon.h"
-
 
 ballistic_cannon::~ballistic_cannon()
 {
@@ -21,7 +17,6 @@ ballistic_cannon::ballistic_cannon(BSL::BSL_Bullet_Name ammoName, BSL_TYPE theta
     BSL_Result_Init();
     setRotateMatrix();
 }
-
 
 ballistic_cannon::ballistic_cannon(BSL_Bullet_Name bulletName, BSL_Initialize_Para para)
     :ballistic(bulletName,0,para)
@@ -209,7 +204,6 @@ std::vector<BSL_TYPE> ballistic_cannon::_faster_dv_dt(const BSL_TYPE &y, const B
     ret.push_back(static_cast<BSL_TYPE>(ret_z));
     return ret;
 }
-
 
 BSL_TYPE ballistic_cannon::updateLatitude(BSL_TYPE currentDistance, BSL_TYPE initLatitude, BSL::BSL_Earth_Part shootPos)
 {

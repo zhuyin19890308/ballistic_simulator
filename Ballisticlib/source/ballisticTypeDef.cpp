@@ -1,6 +1,4 @@
 
-
-
 #include "ballisticTypeDef.h"
 
 BSL::BSL_Result::BSL_Result(int length)
@@ -75,17 +73,6 @@ BSL::BSL_RK4_Para::setValue(unsigned int i, const BSL_TYPE &multi_para, const BS
     this->Kz[i] = multi_para * Kz_value;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 std::shared_ptr<BSL_TYPE> BSL::BSL_RK4_Para::Sum()
 {
     std::shared_ptr<BSL_TYPE> pSum(new BSL_TYPE[6], [](BSL_TYPE * ptr)
@@ -118,12 +105,6 @@ void BSL::singleWeatherMsg::clear()
     this->temperature = 0;
     this->height = 0;
 }
-
-
-
-
-
-
 
 unsigned long BSL::Bullet_type::Bullet_Type_Decoder() const
 {

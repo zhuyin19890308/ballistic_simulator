@@ -43,6 +43,17 @@ add_executable(test_program ${SOURCES}
         ./include/ammoData.h
 )
 
+# 检查动态库是否存在
+if(NOT EXISTS ${ABS_LIBRARY_OUTPUT_PATH}/libballistic_shared.dylib)
+    message(STATUS "Library not found, compiling Ammolib and Ballisticlib")
+
+    # 编译 Ammolib
+    add_subdirectory(../Ammolib ${CMAKE_BINARY_DIR}/Ammolib)
+
+    # 编译 Ballisticlib
+    add_subdirectory(../Ballisticlib ${CMAKE_BINARY_DIR}/Ballisticlib)
+endif()
+
 # 链接动态库
 if (WIN32)
     target_link_libraries(test_program PRIVATE ${ABS_LIBRARY_OUTPUT_PATH}/libballistic_shared.dll)

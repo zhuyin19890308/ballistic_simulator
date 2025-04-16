@@ -1,8 +1,3 @@
-
-
-
-
-
 #ifndef BALLISTICLIBRARY_BALLISTICTYPEDEF_H
 #define BALLISTICLIBRARY_BALLISTICTYPEDEF_H
 
@@ -11,7 +6,7 @@
 
 #ifdef _WIN32
 
-    #define BALLISTICLIBRARY_EXPORT     __declspec(dllexport)
+#define BALLISTICLIBRARY_EXPORT     __declspec(dllexport)
     #define BALLISTICLIBRARY_IMPORT     __declspec(dllimport)
 #elif defined(__APPLE__) || defined(__linux__) || defined(unix)
 
@@ -20,7 +15,7 @@
 #define BALLISTICLIBRARY_HIDDEN     __attribute__((visibility("hidden")))
 #else
 
-    #define BALLISTICLIBRARY_EXPORT
+#define BALLISTICLIBRARY_EXPORT
     #define BALLISTICLIBRARY_IMPORT
     #define BALLISTICLIBRARY_HIDDEN
 #endif
@@ -32,11 +27,7 @@
 #endif
 
 
-
 #define BSL_TYPE float
-
-
-
 
 #include <exception>
 #include <memory>
@@ -135,8 +126,6 @@ typedef enum BSL_Bullet_Name
 
 
 BSL_TYPE BALLISTICLIBRARY calTime(BSL_Bullet_Name unkownAmmo,BSL_TYPE distance);
-
-
 
 typedef struct BALLISTICLIBRARY BSL_Initialize_Para
 {

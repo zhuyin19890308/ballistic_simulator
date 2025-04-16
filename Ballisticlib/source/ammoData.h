@@ -6,9 +6,7 @@
 #include"NAME_AK47.h"
 #include <memory>
 
-
 using namespace BSL;
-
 
 class ammoFactory  {
 public:
@@ -23,7 +21,6 @@ public:
         }
         return nullptr;
     }
- 
 };
 
 #endif 

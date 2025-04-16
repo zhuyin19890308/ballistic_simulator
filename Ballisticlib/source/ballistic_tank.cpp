@@ -16,9 +16,6 @@ ballistic_tank::ballistic_tank(BSL::BSL_Bullet_Name ammoName, BSL_TYPE theta0, B
 ballistic_tank::~ballistic_tank()
 {
 
-
-
-
 }
 
 void ballistic_tank::setVerticalCorrection(BSL_TYPE Target_distance, BSL_TYPE distanceOptical)

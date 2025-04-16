@@ -17,9 +17,6 @@ ballistic_GP::ballistic_GP(BSL::BSL_Bullet_Name ammoName, BSL_TYPE theta0, BSL_T
 ballistic_GP::~ballistic_GP()
 {
 
-
-
-
 }
 
 void ballistic_GP::setCb(BSL_TYPE distance, BSL_TYPE alpha, BSL::BSL_Cb_Method method)  
@@ -30,7 +27,6 @@ void ballistic_GP::setCb(BSL_TYPE distance, BSL_TYPE alpha, BSL::BSL_Cb_Method m
     {
         case BSL::CB_USE_THETA_BILINEAR:
 
-            
             try
             {
                 ballistic::Cb = bullet.get()->getCb(distance, alpha)

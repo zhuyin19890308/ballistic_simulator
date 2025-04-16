@@ -1,9 +1,5 @@
 
-
-
-
 #include "ballisticWeatherMsg.h"
-
 
 decoder0000::decoder0000(const std::vector<string> &splitedMsg, std::shared_ptr<ammoBase> bulletHandle)
 {
@@ -14,16 +10,12 @@ decoder0000::decoder0000(const std::vector<string> &splitedMsg, std::shared_ptr<
 
 bool decoder0000::validationCheck()
 {
-    
     if (msgSplited.empty() || msgSplited.size() < 7)
     {
         throw length_error("0000: incomplete weather message!");
     }
-
-    
     for (int cnt = 0; cnt < msgSplited.size(); ++cnt)
     {
-        
         try
         {
             boost::lexical_cast<int>(msgSplited.at(cnt));
@@ -34,7 +26,6 @@ bool decoder0000::validationCheck()
             throw e;
         }
 
-        
         if ((cnt == 0 || cnt == 1 || cnt == 2 || cnt == 3) && (msgSplited.at(cnt).size() != 4))
         {
             throw length_error("Invalid length!");
@@ -109,12 +100,8 @@ void decoder0000::decode()
             msg.windSpeed = boost::lexical_cast<BSL_TYPE>(msgSplited.at(cnt)) * 0.1f;
         }
     }
-
     msgDecoded->Msg.push_back(msg);
 }
-
-
-
 
 decoder1111::decoder1111(const vector<string> &splitedMsg, std::shared_ptr<ammoBase> bulletHandle)
 {
@@ -206,10 +193,8 @@ bool decoder1111::validationCheck()
         throw length_error("1111: incomplete weather message!");
     }
 
-    
     for (int cnt = 0; cnt < msgSplited.size(); ++cnt)
     {
-        
         try
         {
             boost::lexical_cast<int>(msgSplited.at(cnt));
@@ -220,7 +205,6 @@ bool decoder1111::validationCheck()
             throw e;
         }
 
-        
         if ((cnt == 0 || cnt == 1 || cnt == 2) && (msgSplited.at(cnt).size() != 4))
         {
             throw length_error("Invalid length!");

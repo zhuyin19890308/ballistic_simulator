@@ -1,7 +1,3 @@
-
-
-
-
 #include "baseClass.h"
 
 
@@ -10,10 +6,6 @@
 using namespace std;
 
 std::vector<BSL_TYPE> ballistic::randomData = std::vector<BSL_TYPE> {};
-
-
-
-
 
 ballistic::ballistic(BSL::BSL_Bullet_Name bulletName, BSL_TYPE theta0, BSL::BSL_Initialize_Para para)
     : BulletName{bulletName}, Theta0{theta0}, Initialize_Para{para}
@@ -35,7 +27,7 @@ ballistic::ballistic(BSL_Bullet_Name bulletName, BSL_Initialize_Para para)
     bullet = bulletFactory.createAmmo(BulletName);
     std::cout << Initialize_Para.x_target << " " << Initialize_Para.y_target << " " << Initialize_Para.z_target << std::endl;
     BSL_TYPE  distance = calDistance(Initialize_Para);
-    cout << "目标距离：" << distance << endl;
+    cout << "Target Distance：" << distance << endl;
             std::vector<BSL_TYPE> distanceList = bullet.get()->getDistanceList();
     std::vector<BSL_TYPE> angleList = bullet.get()->getAngleList();
     BSL_TYPE distanceMax = bullet.get()->getMax(distanceList).second;
@@ -157,32 +149,32 @@ void ballistic::writeHeader(ofstream &file, const string &writeTime)
 {
     file.flags(ios::left);
     file << "----------------------------------------------------------------------------------------------------\n";
-    file << "记录时间：" + writeTime + "\n";
+    file << "Record time: " + writeTime + "\n";
     file << "----------------------------------------------------------------------------------------------------\n";
-    file << outString("弹种", 40) << bullet.get()->getBulletName() + "\n";
-    file << outString("弹丸初速", 40) << to_string(V0) + "\n";
-    file << outString("弹道系数", 40) << to_string(Cb) + "\n";
-    file << outString("初始射角", 40) << to_string(Theta0) + "\n";
-    file << outString("当地温度", 40) << to_string(Initialize_Para.T) + "\n";
-    file << outString("横风", 40) << to_string(Initialize_Para.Wz) + "\n";
-    file << outString("竖风", 40) << to_string(Initialize_Para.Wy) + "\n";
-    file << outString("纵风", 40) << to_string(Initialize_Para.Wx) + "\n";
-    file << outString("地面气压值", 40) << to_string(Initialize_Para.P0) + "\n";
-    file << outString("世界坐标系中炮口坐标X", 40) << to_string(Initialize_Para.xw) + "\n";
-    file << outString("世界坐标系中炮口坐标Y", 40) << to_string(Initialize_Para.yw) + "\n";
-    file << outString("世界坐标系中炮口坐标Z", 40) << to_string(Initialize_Para.zw) + "\n";
-    file << outString("车体——大地坐标系旋转角x", 40) << to_string(Initialize_Para.Rotate_x) + "\n";
-    file << outString("车体——大地坐标系旋转角y", 40) << to_string(Initialize_Para.Rotate_y) + "\n";
-    file << outString("车体——大地坐标系旋转角z", 40) << to_string(Initialize_Para.Rotate_z) + "\n";
-    file << outString("是否加入散布", 40) << to_string(Initialize_Para.isSeparate) + "\n";
-    file << outString("射角误差", 40) << to_string(Initialize_Para.E_theta_x) + "\n";
-    file << outString("方位向误差", 40) << to_string(Initialize_Para.E_theta_z) + "\n";
-    file << outString("初速误差", 40) << to_string(Initialize_Para.E_v0) + "\n";
-    file << outString("弹道系数误差", 40) << to_string(Initialize_Para.E_cb) + "\n";
-    file << outString("垂直向视察修正系数", 40) << to_string(Initialize_Para.verticalCorrection) + "\n";
-    file << outString("水平向视差修正系数", 40) << to_string(Initialize_Para.horizontalCorrection) + "\n";
-    file << outString("迭代截止高度", 40) << to_string(Initialize_Para.gun_height) + "\n";
-    file << outString("保存数据间隔", 40) << to_string(Result_Rk4_Save_Interval) + "\n";
+    file << outString("Bullet Type", 40) << bullet.get()->getBulletName() + "\n";
+    file << outString("Initial Velocity", 40) << to_string(V0) + "\n";
+    file << outString("Ballistic Coefficient", 40) << to_string(Cb) + "\n";
+    file << outString("Initial Angle", 40) << to_string(Theta0) + "\n";
+    file << outString("Local Temperature", 40) << to_string(Initialize_Para.T) + "\n";
+    file << outString("Crosswind", 40) << to_string(Initialize_Para.Wz) + "\n";
+    file << outString("Vertical Wind", 40) << to_string(Initialize_Para.Wy) + "\n";
+    file << outString("Longitudinal Wind", 40) << to_string(Initialize_Para.Wx) + "\n";
+    file << outString("Ground Pressure", 40) << to_string(Initialize_Para.P0) + "\n";
+    file << outString("Muzzle Coordinate X in World Coordinate System", 40) << to_string(Initialize_Para.xw) + "\n";
+    file << outString("Muzzle Coordinate Y in World Coordinate System", 40) << to_string(Initialize_Para.yw) + "\n";
+    file << outString("Muzzle Coordinate Z in World Coordinate System", 40) << to_string(Initialize_Para.zw) + "\n";
+    file << outString("Body-to-Earth Coordinate Rotation Angle X", 40) << to_string(Initialize_Para.Rotate_x) + "\n";
+    file << outString("Body-to-Earth Coordinate Rotation Angle Y", 40) << to_string(Initialize_Para.Rotate_y) + "\n";
+    file << outString("Body-to-Earth Coordinate Rotation Angle Z", 40) << to_string(Initialize_Para.Rotate_z) + "\n";
+    file << outString("Include Dispersion", 40) << to_string(Initialize_Para.isSeparate) + "\n";
+    file << outString("Angle Error", 40) << to_string(Initialize_Para.E_theta_x) + "\n";
+    file << outString("Azimuth Error", 40) << to_string(Initialize_Para.E_theta_z) + "\n";
+    file << outString("Initial Velocity Error", 40) << to_string(Initialize_Para.E_v0) + "\n";
+    file << outString("Ballistic Coefficient Error", 40) << to_string(Initialize_Para.E_cb) + "\n";
+    file << outString("Vertical Parallax Correction Coefficient", 40) << to_string(Initialize_Para.verticalCorrection) + "\n";
+    file << outString("Horizontal Parallax Correction Coefficient", 40) << to_string(Initialize_Para.horizontalCorrection) + "\n";
+    file << outString("Iteration Cut-off Height", 40) << to_string(Initialize_Para.gun_height) + "\n";
+    file << outString("Data Save Interval", 40) << to_string(Result_Rk4_Save_Interval) + "\n";
     file << "----------------------------------------------------------------------------------------------------\n";
 }
 
@@ -190,17 +182,17 @@ void ballistic::writeContent(ofstream &file, BSL_Export_Method method) const
 {
     if (method == BSL::EXP_ALL)
     {
-        file << "时间戳" << "\t" << "\t"
-             << "存速x" << "\t" << "\t"
-             << "存速y" << "\t" << "\t"
-             << "存速z" << "\t" << "\t"
-             << "存速" << "\t" << "\t"
-             << "局部坐标x" << "\t"
-             << "局部坐标y" << "\t"
-             << "局部坐标z" << "\t"
-             << "世界坐标x" << "\t"
-             << "世界坐标y" << "\t"
-             << "世界坐标z" << "\n";
+        file << "Timestamp" << "\t" << "\t"
+             << "Velocity x" << "\t" << "\t"
+             << "Velocity y" << "\t" << "\t"
+             << "Velocity z" << "\t" << "\t"
+             << "Velocity" << "\t" << "\t"
+             << "Local Coord x" << "\t"
+             << "Local Coord y" << "\t"
+             << "Local Coord z" << "\t"
+             << "World Coord x" << "\t"
+             << "World Coord y" << "\t"
+             << "World Coord z" << "\n";
 
         for (int i = 0; i < Result_Rk4.size(); ++i)
         {
@@ -220,11 +212,11 @@ void ballistic::writeContent(ofstream &file, BSL_Export_Method method) const
 
     if (method == BSL::EXP_ABSOLUTE_POS)
     {
-        file << "时间戳" << "\t" << "\t"
-             << "存速" << "\t" << "\t"
-             << "世界坐标x" << "\t"
-             << "世界坐标y" << "\t"
-             << "世界坐标z" << "\n";
+file << "Timestamp" << "\t" << "\t"
+        << "Storage Speed" << "\t" << "\t"
+        << "World Coordinate x" << "\t"
+        << "World Coordinate y" << "\t"
+        << "World Coordinate z" << "\n";
 
         for (int i = 0; i < Result_Rk4.size(); ++i)
         {
@@ -238,14 +230,14 @@ void ballistic::writeContent(ofstream &file, BSL_Export_Method method) const
 
     if (method == BSL::EXP_RELATIVE_POS)
     {
-        file << "时间戳" << "\t" << "\t"
-             << "存速x" << "\t" << "\t"
-             << "存速y" << "\t" << "\t"
-             << "存速z" << "\t" << "\t"
-             << "存速" << "\t" << "\t"
-             << "局部坐标x" << "\t"
-             << "局部坐标y" << "\t"
-             << "局部坐标z" << "\n";
+file << "Timestamp" << "\t" << "\t"
+     << "Stored Speed x" << "\t" << "\t"
+     << "Stored Speed y" << "\t" << "\t"
+     << "Stored Speed z" << "\t" << "\t"
+     << "Stored Speed" << "\t" << "\t"
+     << "Local Coordinate x" << "\t"
+     << "Local Coordinate y" << "\t"
+     << "Local Coordinate z" << "\n";
 
         for (int i = 0; i < Result_Rk4.size(); ++i)
         {
@@ -306,9 +298,7 @@ void ballistic::setCb(BSL_TYPE value, BSL::BSL_Cb_Method method)
             ballistic::Cb = value + static_cast<BSL_TYPE>(this->Initialize_Para.isSeparate) * rd;
             break;
         }
-
 use_linear:
-
         case BSL::CB_USE_THETA_LINEAR   :
             try
             {
@@ -319,11 +309,7 @@ use_linear:
             {
                 std::cout << "Fail to initialize PARAMETER: Cb!";
             }
-
             break;
-
-
-
 
         default:
             goto use_linear;
@@ -717,22 +703,6 @@ BSL_TYPE ballistic::_dvz_dt(const BSL_TYPE &y, const BSL_TYPE &vr, bool cbMethod
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 std::vector<BSL_TYPE> ballistic::_faster_dv_dt(const BSL_TYPE &y, const BSL_TYPE &vr, bool cbMethod, bool IIMethod)
 {
     
@@ -750,77 +720,6 @@ std::vector<BSL_TYPE> ballistic::_faster_dv_dt(const BSL_TYPE &y, const BSL_TYPE
     ret.push_back(static_cast<BSL_TYPE>(ret_z));
     return ret;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 unsigned long ballistic::_fun_RK4()
 {
@@ -1249,7 +1148,6 @@ BSL_TYPE ballistic::calOnce(BSL_TYPE theta)
     iter->getResult(result);
     return result.pData[len - 1].Pos_x;
 }
-
 
 
 BSL_TYPE ballistic::getTime(BSL_TYPE distance)

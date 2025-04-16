@@ -26,16 +26,11 @@
 #define BALLISTICLIBRARY BALLISTICLIBRARY_IMPORT
 #endif
 
-
 #include <iostream>
 #include <algorithm>
 #include <map>
 #include "baseClass.h"
 #include "ballisticTypeDef.h"
-
-
-
-
 
 class BALLISTICLIBRARY ballistic_GP  : public ballistic
 {
@@ -48,11 +43,6 @@ public:
 
     unsigned long _fun_RK4() override;
 };
-
-
-
-
-
 
 
 #endif 
