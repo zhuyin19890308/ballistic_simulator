@@ -71,9 +71,9 @@ where $\vec{v}$ denotes the velocity components along the three coordinate axes.
 
 The ballistic coefficient is defined as:
 
-$$
+$
 \beta = \frac{m}{C_{B} d^2}
-$$  
+$
 where:
 - $C_B$: projectile shape coefficient
 - $d$: projectile diameter
