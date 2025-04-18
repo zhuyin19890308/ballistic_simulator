@@ -10,12 +10,25 @@ Ballistic Simulator is a C++ project designed to simulate ballistic trajectories
 
 [//]: # (</div>)
 
+
 ## Features
 - **Dynamic and Static Libraries**: Supports both shared and static library builds.
 - **Cross-Platform**: Compatible with Windows, macOS, and Linux.
 - **Customizable Ballistic Models**: Includes classes for different ballistic calculations, such as `ballistic_tank`.
 - **Modular Design**: Separate libraries for ammunition (`Ammolib`) and ballistic calculations (`Ballisticlib`).
 - **Forward Trajectory Calculation**: Incorporates elements such as temperature, pressure, meteorological messages, projectile coefficients, and Coriolis force, based on the Runge-Kutta iteration method.
+- **Physics-Based Ballistic Simulation**: The ballistic library is fundamentally built on real-world dynamics and fluid mechanics for forward trajectory calculations. With a given bullet type, firing angle, and environmental variables (structured input), it can compute a complete trajectory. Additionally, it supports reverse calculations where the desired target distance is provided, and the firing angle is computed to generate an approximate trajectory with minimal error.
+
+- **Forward Calculation**: Provide a bullet type, firing angle, and environmental parameters to obtain the full trajectory.
+```cpp
+    explicit ballistic(BSL::BSL_Bullet_Name bulletName, BSL_TYPE theta0, BSL::BSL_Initialize_Para para = BSL::BSL_Initialize_Para::BSL_Defualt_Para());
+```
+
+- **Reverse Calculation**: Provide a target distance to calculate the required firing angle and generate an approximate trajectory.
+Initialization Constructors:
+```cpp   
+    explicit ballistic(BSL::BSL_Bullet_Name bulletName, BSL::BSL_Initialize_Para para = BSL::BSL_Initialize_Para::BSL_Defualt_Para());
+```
 
 ## Requirements
 
@@ -143,47 +156,21 @@ Other parameters retain their meanings as in the armored weapon ballistic model.
 
 ## example
 ```cpp
-#include <iostream>
-#include <memory>
-#include <chrono>
-#include "ballistic.h" // Include the header for your ballistic class
-
-int main() {
+auto bullet_name = BSL::NAME_AK47;
+std::unique_ptr<ballistic> bullet;
 try {
-// Loop to simulate multiple executions
-for (int i = 0; i < 100; ++i) {
-// Record the start time for performance measurement
-auto start = std::chrono::system_clock::now();
-
-            // Create a unique pointer to a ballistic object using dynamic allocation
-            std::unique_ptr<ballistic> bullet = std::make_unique<ballistic>(BSL::NAME_AK47, 10, BSL::BSL_Initialize_Para());
-
-            // Calculate and retrieve the length of the result
-            int len = bullet->calculate();
-            std::cout << "Length: " << len << std::endl;
-
-            // Measure the execution time in seconds
-            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
-                std::chrono::system_clock::now() - start);
-            std::cout << "Execution Time: " << duration.count() / 1e6 << "s" << std::endl;
-
-            // Retrieve and display the last position's X coordinate
-            BSL::BSL_Result result(len);
-            bullet->getResult(result);
-            std::cout << "Last Position X: " << result.pData.get()[len - 1].Pos_x << std::endl;
-        }
-        std::cout << "End of simulation." << std::endl;
-
-    } catch (const std::exception &e) {
-        // Handle standard exceptions
-        std::cerr << "Exception: " << e.what() << std::endl;
-        return -1;
-    } catch (...) {
-        // Handle unknown exceptions
-        std::cerr << "Unknown error occurred." << std::endl;
-        return -1;
-    }
-
-    return 0; // Return success
+    //step 1——————Init
+    bullet = std::make_unique<ballistic>(bullet_name, 10, BSL::BSL_Initialize_Para());
+} catch (const std::exception &e) {
+    std::cerr << "Exception: " << e.what() << std::endl;
+return -1;
 }
+//step 2——————calculate the ballistic trajectory
+int len = static_cast<int>(bullet->calculate());
+//step 3——————Initialize variables to store ballistic data
+BSL::BSL_Result result(len);
+//step 4——————Copy result from bullet handler
+bullet->getResult(result);
+//step 5——————Print data: for example, print the shooting distance
+std::cout << "Last Position X: " << result.pData.get()[len - 1].Pos_x << std::endl;
 ```
