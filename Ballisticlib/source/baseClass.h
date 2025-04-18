@@ -102,19 +102,6 @@ public:
     
     typedef struct Result
     {
-#ifdef QT
-        QVector<BSL_TYPE> timeStamp {};
-        QVector<BSL_TYPE> v_x{};                                
-        QVector<BSL_TYPE> v_y{};                                
-        QVector<BSL_TYPE> v_z{};                                
-        QVector<BSL_TYPE> v_remain{};                           
-        QVector<BSL_TYPE> Pos_x{};                              
-        QVector<BSL_TYPE> Pos_y{};                              
-        QVector<BSL_TYPE> Pos_z{};                              
-        QVector<BSL_TYPE> Pos_xw{};                             
-        QVector<BSL_TYPE> Pos_yw{};                             
-        QVector<BSL_TYPE> Pos_zw{};                             
-#else
         vector<BSL_TYPE> timeStamp {};
         vector<BSL_TYPE> v_x{};                                
         vector<BSL_TYPE> v_y{};                                
@@ -125,8 +112,7 @@ public:
         vector<BSL_TYPE> Pos_z{};                              
         vector<BSL_TYPE> Pos_xw{};                             
         vector<BSL_TYPE> Pos_yw{};                             
-        vector<BSL_TYPE> Pos_zw{};                             
-#endif
+        vector<BSL_TYPE> Pos_zw{};
         Result();
         ~Result();
         void BSL_Result_Clear();
